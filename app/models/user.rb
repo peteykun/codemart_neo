@@ -4,12 +4,10 @@ class User < ActiveRecord::Base
   validates                :username, length: { maximum: 8 }
   validates                :gender, inclusion: { in: ['male', 'female'] }
   validates                :is_admin, inclusion: { in: [true, false] }
+  validates_uniqueness_of  :email, :username
 
-	validates_uniqueness_of  :email, :username
 	has_many                 :runs
-	has_many                 :regions
-  has_many                 :manifests
-  has_many                 :regions, through: :manifests
+  has_many                 :problems
 
 	has_secure_password
   attr_accessor :level

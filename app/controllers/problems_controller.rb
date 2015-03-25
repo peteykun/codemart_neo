@@ -12,9 +12,7 @@ class ProblemsController < ApplicationController
 
   # GET /problems
   def index
-    @problems = Problem.where(region: current_zone, active: true).order('difficulty ASC').paginate(page: params[:page], per_page: 10)
-    @current_zone = current_zone
-    @allowed_level = Manifest.where(user: current_user, region: current_zone)[0].level + 1
+    @problems = Problem.where(user: current_user).order('difficulty ASC').paginate(page: params[:page], per_page: 10)
   end
 
   # GET /problems/1
@@ -97,21 +95,8 @@ class ProblemsController < ApplicationController
     end
 
     def check_if_allowed
-      if @problem.active == false
-        redirect_to action: 'index', notice: 'This problem has been archived.'
-        return
-      elsif @problem.active == nil
-        redirect_to action: 'index', notice: 'This problem has not been activated.'
-        return
-      end
-
-      if @problem.region != current_zone
-        redirect_to action: 'index', notice: 'This region is closed right now.'
-        return
-      end
-
-      if @problem.difficulty > current_user.level(current_zone) + 1
-        redirect_to action: 'index', notice: 'This problem is locked right now.'
+      if @problem.user != current_user
+        redirect_to action: 'index', notice: 'This problem does not belong to you.'
         return
       end
     end

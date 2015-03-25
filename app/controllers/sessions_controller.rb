@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     user = User.find_by_username(params[:username].downcase)
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to zones_url
+      redirect_to problems_url
     else
       @error = "Looks like you've entered an invalid username or password."
       render 'new'

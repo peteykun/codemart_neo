@@ -1,4 +1,4 @@
-<h1>List of Problems (<%= @current_zone.name %>)</h1>
+<h1>List of Problems</h1>
 <hr>
 
 <% if params[:notice] != nil %>
@@ -9,7 +9,8 @@
   <thead>
     <tr>
       <th width="5%">Lv.</th>
-      <th width="70%">Problem Name</th>
+      <th width="50%">Problem Name</th>
+      <th width="20%">Reward</th>
       <th>Controls</th>
     </tr>
   </thead>
@@ -19,15 +20,10 @@
       <tr>
         <td><%= problem.difficulty %></td>
         <td><%= problem.name %></td>
+        <td><%= problem.reward %></td>
         <td>
-          <% if problem.difficulty <= @allowed_level %>
           <%= link_to problem do %>
           <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Read Statement
-          <% end %>
-          <% else %>
-          <%= link_to problem do %>
-          <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Problem Locked
-          <% end %>
           <% end %>
         </td>
       </tr>

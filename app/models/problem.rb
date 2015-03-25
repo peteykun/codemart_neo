@@ -1,9 +1,10 @@
 class Problem < ActiveRecord::Base
   validates_presence_of :name, :statement, :sample_input, :sample_output, :difficulty
   validate              :input_strings_must_exist_before_output, :input_and_output_sizes_must_not_differ
-	belongs_to 	          :region
+  
 	has_many	            :runs
 	has_many	            :test_cases
+  belongs_to            :user
 
   attr_accessor :test_case_inputs, :test_case_outputs
 

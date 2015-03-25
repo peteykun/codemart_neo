@@ -13,15 +13,6 @@
   <%= @problem.difficulty %>
 </p>
 
-<p>
-  <strong>Region:</strong>
-  <% if @problem.region == nil %>
-  Nowhere
-  <% else %>
-  <%= link_to @problem.region.name, admin_region_path(@problem.region) %>
-  <% end %>
-</p>
-
 <hr>
 
 <p>

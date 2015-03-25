@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319103753) do
+ActiveRecord::Schema.define(version: 20150325060624) do
 
   create_table "config_tables", force: :cascade do |t|
     t.string   "key",        limit: 255
@@ -20,36 +20,16 @@ ActiveRecord::Schema.define(version: 20150319103753) do
     t.datetime "updated_at"
   end
 
-  create_table "manifests", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "region_id",  limit: 4
-    t.integer  "level",      limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "past_level", limit: 4
-  end
-
   create_table "problems", force: :cascade do |t|
     t.integer  "difficulty",    limit: 4
     t.text     "statement",     limit: 65535
     t.text     "sample_input",  limit: 65535
     t.text     "sample_output", limit: 65535
-    t.integer  "region_id",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name",          limit: 255
-    t.boolean  "active",        limit: 1
-  end
-
-  create_table "regions", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "active",     limit: 1
-    t.integer  "x",          limit: 4
-    t.integer  "y",          limit: 4
-    t.integer  "rounds",     limit: 4
+    t.integer  "user_id",       limit: 4
+    t.integer  "reward",        limit: 4
   end
 
   create_table "runs", force: :cascade do |t|

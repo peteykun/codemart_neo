@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Game of Zones &ndash; Admin Panel</title>
+  <title>CodeMart &ndash; Admin Panel</title>
   <%= stylesheet_link_tag    'admin', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -18,7 +18,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<%= admin_path %>">Game of Zones</a>
+        <a class="navbar-brand" href="<%= admin_path %>">CodeMart</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,12 +35,6 @@
           </li>
           <li<%= raw ' class="active"' if controller_name == "users" %>>
             <a href="<%= admin_users_path %>">Users</a>
-          </li>
-          <li<%= raw ' class="active"' if controller_name == "regions" %>>
-            <a href="<%= admin_regions_path %>">Regions</a>
-          </li>
-          <li<%= raw ' class="active"' if controller_name == "game_manager" %>>
-            <a href="<%= admin_game_manager_path %>">Game Manager</a>
           </li>
           <li<%= raw ' class="active"' if controller_name == "settings" %>>
             <a href="<%= admin_settings_path %>">Settings</a>

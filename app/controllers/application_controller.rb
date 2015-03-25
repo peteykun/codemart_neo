@@ -9,10 +9,6 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id])
   end
 
-  def current_zone
-    return Region.find_by_active(true)
-  end
-
   def check_if_logged_in
     if current_user == nil
       redirect_to login_path
