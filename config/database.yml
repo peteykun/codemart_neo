@@ -1,0 +1,35 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &default
+  pool: 5
+
+development:
+  <<: *default
+  adapter: mysql2
+  encoding: utf8
+  username: codemart
+  password: Bdqct8P2aE6JaKRD
+  socket: /run/mysqld/mysqld.sock
+  database: codemart_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  adapter: mysql2
+  encoding: utf8
+  username: codemart
+  password: Bdqct8P2aE6JaKRD
+  socket: /run/mysqld/mysqld.sock
+  database: codemart_test
+
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+

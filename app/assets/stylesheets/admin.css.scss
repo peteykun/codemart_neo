@@ -1,0 +1,54 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "prettify";
+
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.container {
+  width: 970px;
+  max-width: none !important;
+}
+
+/* Scaffolding CSS */
+
+#notice {
+  color: green;
+}
+
+.field_with_errors input {
+  border-color: red;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+/* Prevent headbutting anchors */
+
+h4 span { 
+  margin-top: -80px;        /* Size of fixed header */
+  padding-bottom: 80px; 
+  display: block; 
+}
