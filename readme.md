@@ -1,12 +1,10 @@
-# Game of Zones
+# CodeMart Neo
 
-This is a web app to host a capture-the-flag style coding competition.
+This is a web app to host a coding competition that allows buying and selling of code snippets.
 
 * Has a full-featured admin panel.
 
 * Features Google Code Jam-like program testing, with runtime input and output generation.
-
-* Comes with a Pokémon-inspired skin that can be swapped out for a different one, and a modular, fully configurable introduction video for registration.
 
 # Installation
 
@@ -14,4 +12,4 @@ Please run the database migrations and seed the database. For Rails 4, the follo
 
     $ rake db:reset
 
-Run in `development` mode for sqlite, while `production` is configured for Microsoft Azure. Set environmental variables for `database.yml` in order to deploy to Azure.
+Running in `development` mode requires MySQL, while `production` is configured for Heroku. Set environmental variables for `database.yml` in order to run in development, or deploy to heroku directly.
