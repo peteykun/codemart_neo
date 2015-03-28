@@ -4,9 +4,14 @@ class Problem < ActiveRecord::Base
   
 	has_many	            :runs
 	has_many	            :test_cases
+  has_many              :solutions
   belongs_to            :user
 
   attr_accessor :test_case_inputs, :test_case_outputs
+
+  def solved?
+    return self.runs.where(success: true).size > 0
+  end
 
   def generate_new_run(user, number_of_test_cases)
     run = Run.create

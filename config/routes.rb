@@ -68,9 +68,6 @@ Rails.application.routes.draw do
     resources :users
     resources :test_cases
     resources :runs
-
-    get 'game_manager', to: 'game_manager#index'
-    get 'game_manager/:action', to: 'game_manager'
     
     get  'settings', to: 'settings#index'
     post 'settings', to: 'settings#update'
@@ -79,6 +76,8 @@ Rails.application.routes.draw do
   end
 
   resources :problems do
+    get 'input'
+
     member do
       get  'request_input'
       post 'submit_output'
@@ -88,6 +87,7 @@ Rails.application.routes.draw do
   resources :users
   resources :runs
   resources :sessions
+  resources :solutions
   
   get 'login',    to: 'sessions#new'
   get 'register', to: 'users#new'

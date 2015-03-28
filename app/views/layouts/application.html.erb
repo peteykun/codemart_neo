@@ -31,6 +31,9 @@
           <li<%= raw ' class="active"' if controller_name == "runs" %>>
             <a href="<%= runs_path %>">My Runs <span class="sr-only">(current)</span></a>
           </li>
+          <li<%= raw ' class="active"' if controller_name == "solutions" %>>
+            <a href="<%= solutions_path %>">My Solutions <span class="sr-only">(current)</span></a>
+          </li>
           <li<%= raw ' class="active"' if controller_name == "users" %>>
             <a href="<%= users_path %>">Leaderboard</a>
           </li>

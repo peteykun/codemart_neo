@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
 	has_many                 :runs
   has_many                 :problems
+  has_many                 :solutions
 
 	has_secure_password
   attr_accessor :level
@@ -15,6 +16,10 @@ class User < ActiveRecord::Base
 	def is_admin?
 		return self.is_admin
 	end
+
+  def effective_score
+    return (self.score * self.karma).to_i
+  end
 
   def level(region)
     m = Manifest.where(user: self, region: region)

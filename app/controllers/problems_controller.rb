@@ -2,7 +2,7 @@ class ProblemsController < ApplicationController
   before_action :set_problem, only: [:show, :request_input, :submit_output]
   before_action :check_if_allowed, only: [:show, :request_input, :submit_output]
   before_action :set_cache_buster
-  before_action :check_if_logged_in
+  #before_action :check_if_logged_in
 
   def set_cache_buster
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
@@ -13,6 +13,17 @@ class ProblemsController < ApplicationController
   # GET /problems
   def index
     @problems = Problem.where(user: current_user).order('difficulty ASC').paginate(page: params[:page], per_page: 10)
+  end
+
+  def input
+    @problem    = Problem.find(params[:problem_id])
+
+    test_set    = @problem.test_cases.order(:id)
+    n           = test_set.size
+    input_set   = test_set.flat_map { |i| i.input }
+    @input      = n.to_s + "\n" + input_set.join("\n")
+
+    render text: @input
   end
 
   # GET /problems/1
