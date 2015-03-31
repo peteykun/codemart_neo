@@ -1,0 +1,66 @@
+<h1>Auctions</h1>
+<hr>
+
+<div id="active_auctions">
+  <% @active_auctions.each do |auction| %>
+  <div class="panel panel-info" data-id="<%= auction.id %>">
+    <div class="panel-heading name"><%= auction.problem.name %></div>
+    <div class="panel-body">
+      <b>Read statement:</b>
+      <span class="statement_link"><%= link_to "Click here", auction.problem, target: '_blank' %></span>
+      <br>
+
+      <b>Current Price:</b>
+      <span class="current_price"><%= auction.current_price %></span> coins
+      <br>
+      
+      <% if auction.timer_running? %>
+      <span class="time_left_wrapper">
+        <b>Winning bidder:</b><span class="winning_bidder">&nbsp;<%= auction.winning_bidder.username.titleize %></span><br>
+        <b>Time left to bid:</b><span class="time_left">&nbsp;<%= auction.time_left %></span> seconds<br>
+      </span>
+      <% else %>
+      <span class="time_left_wrapper" style="display: none;">
+        <b>Winning bidder:</b><span class="winning_bidder"></span><br>
+        <b>Time left to bid:</b><span class="time_left"></span> seconds<br>
+      </span>
+      <% end %>
+      
+      <br>
+
+      <b>Make a Bid:</b><br><br>
+
+      <input type="number" name="amount" class="form-control" value="<%= auction.current_price + 10 %>" readonly><br>
+
+      <div class="btn-group" role="group" aria-label="add-value">
+        <button type="button" class="btn btn-primary add" data-value="10">+10</button>
+        <button type="button" class="btn btn-primary add" data-value="100">+100</button>
+        <button type="button" class="btn btn-primary add" data-value="1000">+1000</button>
+      </div>
+
+      <a class="btn btn-warning bid-button" data-allowed="<%= auction.bidding_allowed?(current_user) %>">Bid the above amount</a>
+      <a class="btn btn-success buy-button" data-allowed="<%= auction.bidding_allowed?(current_user) %>">Buy it now for <%= auction.buy_it_now_price %> coins</a>
+    </div>
+  </div>
+
+  <br>
+  <% end %>
+</div>
+
+<div id="inactive_auctions">
+  <% @inactive_auctions.each do |auction| %>
+  <div class="panel panel-default" data-id="<%= auction.id %>">
+    <div class="panel-heading name"><%= auction.problem.name %></div>
+    <div class="panel-body">
+      <b>Read statement:</b>
+      <span class="statement_link"><%= link_to "Click here", auction.problem, target: '_blank' %></span>
+      <br>
+
+      <b>Base Price:</b>
+      <span class="current_price"><%= auction.problem.base_price %></span> coins
+    </div>
+  </div>
+
+  <br>
+  <% end %>
+</div>

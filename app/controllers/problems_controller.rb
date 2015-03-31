@@ -2,7 +2,7 @@ class ProblemsController < ApplicationController
   before_action :set_problem, only: [:show, :request_input, :submit_output]
   before_action :check_if_allowed, only: [:show, :request_input, :submit_output]
   before_action :set_cache_buster
-  #before_action :check_if_logged_in
+  before_action :check_if_logged_in
 
   def set_cache_buster
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
@@ -106,7 +106,7 @@ class ProblemsController < ApplicationController
     end
 
     def check_if_allowed
-      if @problem.user != current_user
+      if @problem.user != nil and @problem.user != current_user
         redirect_to action: 'index', notice: 'This problem does not belong to you.'
         return
       end

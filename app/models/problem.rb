@@ -5,6 +5,7 @@ class Problem < ActiveRecord::Base
 	has_many	            :runs
 	has_many	            :test_cases
   has_many              :solutions
+  has_many              :auctions
   belongs_to            :user
 
   attr_accessor :test_case_inputs, :test_case_outputs

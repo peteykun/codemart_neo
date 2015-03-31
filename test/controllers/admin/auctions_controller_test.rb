@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AuctionItemTest < ActiveSupport::TestCase
+class Admin::AuctionsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

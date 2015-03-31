@@ -68,6 +68,10 @@ Rails.application.routes.draw do
     resources :users
     resources :test_cases
     resources :runs
+    resources :auctions do
+      get 'start'
+      get 'stop'
+    end
     
     get  'settings', to: 'settings#index'
     post 'settings', to: 'settings#update'
@@ -87,7 +91,10 @@ Rails.application.routes.draw do
   resources :users
   resources :runs
   resources :sessions
-  resources :solutions
+  resources :auctions do
+    post 'bid'
+    post 'buy'
+  end
   
   get 'login',    to: 'sessions#new'
   get 'register', to: 'users#new'

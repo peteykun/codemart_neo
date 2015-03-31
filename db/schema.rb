@@ -11,23 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328105609) do
+ActiveRecord::Schema.define(version: 20150331054136) do
 
-  create_table "auction_items", force: :cascade do |t|
-    t.integer  "program_id",  limit: 4
+  create_table "auctions", force: :cascade do |t|
+    t.integer  "problem_id",  limit: 4
     t.integer  "winning_bid", limit: 4
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.boolean  "active",      limit: 1
   end
 
   create_table "bids", force: :cascade do |t|
-    t.integer  "auction_item_id", limit: 4
-    t.integer  "user_id",         limit: 4
-    t.integer  "amount",          limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "auction_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.integer  "amount",     limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "config_tables", force: :cascade do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150328105609) do
     t.string   "name",          limit: 255
     t.integer  "user_id",       limit: 4
     t.integer  "reward",        limit: 4
+    t.integer  "base_price",    limit: 4
   end
 
   create_table "runs", force: :cascade do |t|
@@ -61,17 +63,6 @@ ActiveRecord::Schema.define(version: 20150328105609) do
     t.datetime "updated_at"
     t.integer  "user_id",         limit: 4
     t.boolean  "tested",          limit: 1
-  end
-
-  create_table "solutions", force: :cascade do |t|
-    t.integer  "problem_id", limit: 4
-    t.integer  "user_id",    limit: 4
-    t.text     "code",       limit: 65535
-    t.text     "output",     limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.boolean  "tested",     limit: 1
-    t.boolean  "success",    limit: 1
   end
 
   create_table "test_cases", force: :cascade do |t|
@@ -93,7 +84,7 @@ ActiveRecord::Schema.define(version: 20150328105609) do
     t.string   "name",            limit: 255
     t.string   "college",         limit: 255
     t.integer  "score",           limit: 4
-    t.float    "karma",           limit: 24
+    t.integer  "balance",         limit: 4
   end
 
 end

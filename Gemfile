@@ -21,7 +21,9 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'passenger'
 gem 'responders', '~> 2.0'
+gem 'json_builder'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -33,3 +35,6 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 gem 'whenever', :require => false
+gem 'oj'
+gem 'oj_mimic_json'
+gem 'multi_json'

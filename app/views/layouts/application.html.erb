@@ -23,6 +23,10 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <p class="navbar-text">
+          <i class="glyphicon glyphicon-usd"></i> Balance: <span id="balance"><%= current_user.balance %></span> coins
+        </p>
+
         <ul class="nav navbar-nav navbar-right">
           <% if current_user != nil %>
           <li<%= raw ' class="active"' if controller_name == "problems" %>>
@@ -31,8 +35,8 @@
           <li<%= raw ' class="active"' if controller_name == "runs" %>>
             <a href="<%= runs_path %>">My Runs <span class="sr-only">(current)</span></a>
           </li>
-          <li<%= raw ' class="active"' if controller_name == "solutions" %>>
-            <a href="<%= solutions_path %>">My Solutions <span class="sr-only">(current)</span></a>
+          <li<%= raw ' class="active"' if controller_name == "auctions" %>>
+            <a href="<%= auctions_path %>">Auctions <span class="sr-only">(current)</span></a>
           </li>
           <li<%= raw ' class="active"' if controller_name == "users" %>>
             <a href="<%= users_path %>">Leaderboard</a>
@@ -50,7 +54,7 @@
           <li<%= raw ' class="active"' if controller_name == "users" %>>
             <a href="<%= register_path %>">Register</a>
           </li>
-          <%end %>
+          <% end %>
           <% if current_user != nil %>
           <li>
             <a href="<%= logout_path %>">Logout</a>
