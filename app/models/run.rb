@@ -17,13 +17,12 @@ class Run < ActiveRecord::Base
   def test
     return if self.tested
     self.success = check
-    was_solved = self.problem.solved?
+    was_solved = self.problem.solved?(user)
 
     if self.success
       # Do stuff, update score
       unless was_solved
-        user = self.problem.user
-        user.score += self.problem.reward
+        user.balance += self.problem.reward
         user.save
       end
     end

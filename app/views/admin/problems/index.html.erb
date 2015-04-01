@@ -18,7 +18,7 @@
         <td><%= problem.id %></td>
         <td><%= problem.name %></td>
         <td><%= problem.difficulty %></td>
-        <td><%= if problem.user == nil then "Nobody" else problem.user.username.titleize end %></td>
+        <td><%= if problem.users.size == 0 then "Nobody" else problem.users.pluck(:username).map{ |x| x.titleize }.join(', ') end %></td>
         <td>
           <%= link_to [:admin, problem] do %>
           <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> View

@@ -10,8 +10,8 @@
     <tr>
       <th width="5%">Lv.</th>
       <th width="50%">Problem Name</th>
-      <th width="20%">Reward</th>
-      <th>Controls</th>
+      <th width="10%">Reward</th>
+      <th colspan="2">Controls</th>
     </tr>
   </thead>
 
@@ -24,6 +24,17 @@
         <td>
           <%= link_to problem do %>
           <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Read Statement
+          <% end %>
+        </td>
+        <td>
+          <% if problem.solved? current_user %>
+          <%= link_to '#' do %>
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Problem Solved
+          <% end %>
+          <% else %>
+          <%= link_to problem_sell_path(problem) do %>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Sell Problem
+          <% end %>
           <% end %>
         </td>
       </tr>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331054136) do
+ActiveRecord::Schema.define(version: 20150401100400) do
 
   create_table "auctions", force: :cascade do |t|
     t.integer  "problem_id",  limit: 4
@@ -38,17 +38,28 @@ ActiveRecord::Schema.define(version: 20150331054136) do
     t.datetime "updated_at"
   end
 
+  create_table "free_pool_items", force: :cascade do |t|
+    t.integer  "problem_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
   create_table "problems", force: :cascade do |t|
-    t.integer  "difficulty",    limit: 4
-    t.text     "statement",     limit: 65535
-    t.text     "sample_input",  limit: 65535
-    t.text     "sample_output", limit: 65535
+    t.integer  "difficulty",      limit: 4
+    t.text     "statement",       limit: 65535
+    t.text     "sample_input",    limit: 65535
+    t.text     "sample_output",   limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",          limit: 255
-    t.integer  "user_id",       limit: 4
-    t.integer  "reward",        limit: 4
-    t.integer  "base_price",    limit: 4
+    t.string   "name",            limit: 255
+    t.integer  "reward",          limit: 4
+    t.integer  "base_price",      limit: 4
+    t.text     "short_statement", limit: 65535
+  end
+
+  create_table "problems_users", force: :cascade do |t|
+    t.integer "problem_id", limit: 4
+    t.integer "user_id",    limit: 4
   end
 
   create_table "runs", force: :cascade do |t|
@@ -83,7 +94,6 @@ ActiveRecord::Schema.define(version: 20150331054136) do
     t.string   "gender",          limit: 255
     t.string   "name",            limit: 255
     t.string   "college",         limit: 255
-    t.integer  "score",           limit: 4
     t.integer  "balance",         limit: 4
   end
 

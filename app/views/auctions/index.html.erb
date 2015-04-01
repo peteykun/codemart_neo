@@ -1,17 +1,29 @@
 <h1>Auctions</h1>
 <hr>
 
+<% if @last_archived_auction != nil %>
+<div class="alert alert-info" id="archived_info"><b>Information:</b> <span class="last_archived_auction_problem_name"><%= @last_archived_auction.problem.name %></span> was sold to <span class="last_archived_auction_winning_bidder_username"><%= @last_archived_auction.winning_bidder.username.titleize %></span>.</div>
+<br>
+<% else %>
+<div class="alert alert-info" id="archived_info" style="display: none;"><b>Information:</b> <span class="last_archived_auction_problem_name"></span> was sold to <span class="last_archived_auction_winning_bidder_username"></span>.</div>
+<br>
+<% end %>
+
 <div id="active_auctions">
   <% @active_auctions.each do |auction| %>
-  <div class="panel panel-info" data-id="<%= auction.id %>">
+  <div class="panel panel-primary" data-id="<%= auction.id %>">
     <div class="panel-heading name"><%= auction.problem.name %></div>
     <div class="panel-body">
       <b>Read statement:</b>
-      <span class="statement_link"><%= link_to "Click here", auction.problem, target: '_blank' %></span>
+      <span class="statement_link"><%= link_to "Click here", problem_preview_path(auction.problem), target: '_blank' %></span>
       <br>
 
       <b>Current Price:</b>
       <span class="current_price"><%= auction.current_price %></span> coins
+      <br>
+
+      <b>Reward:</b>
+      <span class="reward"><%= auction.problem.reward %></span> coins
       <br>
       
       <% if auction.timer_running? %>
@@ -30,7 +42,7 @@
 
       <b>Make a Bid:</b><br><br>
 
-      <input type="number" name="amount" class="form-control" value="<%= auction.current_price + 10 %>" readonly><br>
+      <input type="number" name="amount" class="form-control" value="<%= auction.current_price + 10 %>" data-min="<%= auction.current_price + 10 %>" data-max="<%= auction.buy_it_now_price - 10 %>" readonly><br>
 
       <div class="btn-group" role="group" aria-label="add-value">
         <button type="button" class="btn btn-primary add" data-value="10">+10</button>
@@ -38,8 +50,14 @@
         <button type="button" class="btn btn-primary add" data-value="1000">+1000</button>
       </div>
 
+      <div class="btn-group" role="group" aria-label="sub-value">
+        <button type="button" class="btn btn-danger sub" data-value="10">-10</button>
+        <button type="button" class="btn btn-danger sub" data-value="100">-100</button>
+        <button type="button" class="btn btn-danger sub" data-value="1000">-1000</button>
+      </div>
+
       <a class="btn btn-warning bid-button" data-allowed="<%= auction.bidding_allowed?(current_user) %>">Bid the above amount</a>
-      <a class="btn btn-success buy-button" data-allowed="<%= auction.bidding_allowed?(current_user) %>">Buy it now for <%= auction.buy_it_now_price %> coins</a>
+      <a class="btn btn-success buy-button" data-allowed="<%= auction.buying_allowed?(current_user) %>">Buy it now for <%= auction.buy_it_now_price %> coins</a>
     </div>
   </div>
 
@@ -53,14 +71,20 @@
     <div class="panel-heading name"><%= auction.problem.name %></div>
     <div class="panel-body">
       <b>Read statement:</b>
-      <span class="statement_link"><%= link_to "Click here", auction.problem, target: '_blank' %></span>
+      <span class="statement_link"><%= link_to "Click here", problem_preview_path(auction.problem), target: '_blank' %></span>
       <br>
 
       <b>Base Price:</b>
       <span class="current_price"><%= auction.problem.base_price %></span> coins
+      <br>
+
+      <b>Reward:</b>
+      <span class="reward"><%= auction.problem.reward %></span> coins
     </div>
   </div>
 
   <br>
   <% end %>
 </div>
+
+<%= javascript_include_tag 'auctions' %>

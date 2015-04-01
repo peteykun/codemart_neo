@@ -13,7 +13,26 @@
   <%= @problem.difficulty %>
 </p>
 
+<p>
+  <strong>Base Price:</strong>
+  <%= @problem.base_price %> coins
+</p>
+
+<p>
+  <strong>Reward:</strong>
+  <%= @problem.reward %> coins
+</p>
+
 <hr>
+
+<p>
+  <strong>Short Statement:</strong>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= raw @problem.short_statement %>
+    </div>
+  </div>
+</p>
 
 <p>
   <strong>Statement:</strong>

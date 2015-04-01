@@ -4,10 +4,8 @@
 <table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th style="width: 55%">Name</th>
-      <th style="width: 15%">Balance</th>
-      <th style="width: 15%">Karma</th>
-      <th style="width: 15%">Score</th>
+      <th style="width: 70%">Name</th>
+      <th style="width: 30%">Balance</th>
     </tr>
   </thead>
 
@@ -15,9 +13,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.username.titleize %></td>
-        <td><%= user.score %></td>
-        <td><%= user.karma %></td>
-        <td><%= user.effective_score %></td>
+        <td><%= user.balance %> coins</td>
       </tr>
     <% end %>
   </tbody>

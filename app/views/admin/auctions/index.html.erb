@@ -7,6 +7,7 @@
       <th>#</th>
       <th>Name</th>
       <th>Status</th>
+      <th>Winner</th>
       <th colspan="1" width="30%">Controls</th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= auction.id %></td>
         <td><%= auction.problem.name %></td>
+        <td><%= unless auction.winning_bidder.nil? then auction.winning_bidder.username.titleize else "" end %></td>
         <td>
           <% if auction.active == true %>
             Auction in progress
@@ -55,3 +57,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'New Auction', new_admin_auction_path, class: 'btn btn-default' %>

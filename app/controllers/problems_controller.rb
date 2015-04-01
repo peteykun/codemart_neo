@@ -12,7 +12,7 @@ class ProblemsController < ApplicationController
 
   # GET /problems
   def index
-    @problems = Problem.where(user: current_user).order('difficulty ASC').paginate(page: params[:page], per_page: 10)
+    @problems = current_user.problems #order('difficulty ASC').paginate(page: params[:page], per_page: 10)
   end
 
   def input
@@ -47,6 +47,36 @@ class ProblemsController < ApplicationController
       @flash = true
       @success = flash[:success]
       @message = flash[:message]
+    end
+  end
+
+  # GET /problems/1/preview
+  def preview
+    @problem = Problem.find(params[:problem_id])
+  end
+
+  # GET /problems/1/sell
+  def sell
+    @problem = Problem.find(params[:problem_id])
+  end
+
+  # POST /problems/1/sell
+  def remove
+    @problem = Problem.find(params[:problem_id])
+
+    if @problem.solved? current_user
+      redirect_to action: 'index', notice: 'You cannot sell a solved problem.'
+
+    else
+
+      if params[:name] == @problem.name
+        current_user.problems.delete @problem
+        current_user.update(balance: current_user.balance + @problem.sell_price)
+        redirect_to action: 'index'
+      else
+        render 'sell'
+      end
+
     end
   end
 
@@ -106,7 +136,7 @@ class ProblemsController < ApplicationController
     end
 
     def check_if_allowed
-      if @problem.user != nil and @problem.user != current_user
+      if not @problem.users.exists? current_user
         redirect_to action: 'index', notice: 'This problem does not belong to you.'
         return
       end

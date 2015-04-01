@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of  :email, :username
 
 	has_many                 :runs
-  has_many                 :problems
+  has_and_belongs_to_many  :problems
   has_many                 :solutions
 
 	has_secure_password
@@ -16,10 +16,6 @@ class User < ActiveRecord::Base
 	def is_admin?
 		return self.is_admin
 	end
-
-  def effective_score
-    return (self.score * self.karma).to_i
-  end
 
   def level(region)
     m = Manifest.where(user: self, region: region)

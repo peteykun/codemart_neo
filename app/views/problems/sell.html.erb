@@ -1,0 +1,38 @@
+<h1>Sell Problem</h1>
+<hr>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @problem.name %>
+</p>
+
+<p>
+  <strong>Base Price:</strong>
+  <%= @problem.base_price %> coins
+</p>
+
+<p>
+  <strong>Sell for:</strong>
+  <%= @problem.sell_price %> coins
+</p>
+
+<p>
+  <strong>Reward:</strong>
+  <%= @problem.reward %> coins
+</p>
+
+<hr>
+
+<p>
+  Are you sure you want to sell this problem? You cannot get it back.<br>
+  Enter the name of the problem to confirm:
+</p>
+
+<%= form_tag problem_sell_path(@problem) do %>
+  <input type="text" name="name" class="form-control" placeholder="<%= @problem.name %>"><br>
+
+  <input type="submit" value="Confirm and Sell" class="btn btn-danger">
+<% end %>
+

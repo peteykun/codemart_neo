@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     resources :users
     resources :test_cases
     resources :runs
+    resources :free_pool_items
     resources :auctions do
       get 'start'
       get 'stop'
@@ -80,7 +81,10 @@ Rails.application.routes.draw do
   end
 
   resources :problems do
-    get 'input'
+    get  'input'
+    get  'preview'
+    get  'sell'
+    post 'sell', to: 'problems#remove'
 
     member do
       get  'request_input'
@@ -94,6 +98,9 @@ Rails.application.routes.draw do
   resources :auctions do
     post 'bid'
     post 'buy'
+  end
+  resources :free_pool_items do
+    get 'buy'
   end
   
   get 'login',    to: 'sessions#new'

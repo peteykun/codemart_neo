@@ -27,7 +27,7 @@ class Auction < ActiveRecord::Base
 
   def bidding_allowed?(user)
     # Do not allow more than two programs of the same difficulty
-    if Problem.where(user: user, difficulty: self.problem.difficulty).size >= 2
+    if user.problems.where(difficulty: self.problem.difficulty).size >= 2
       return false
     end
 
@@ -41,7 +41,7 @@ class Auction < ActiveRecord::Base
 
   def buying_allowed?(user)
     # Do not allow more than two programs of the same difficulty
-    if Problem.where(user: user, difficulty: self.problem.difficulty).size >= 2
+    if user.problems.where(difficulty: self.problem.difficulty).size >= 2
       return false
     end
 
@@ -56,7 +56,7 @@ class Auction < ActiveRecord::Base
       self.winning_bid.user.update(balance: self.winning_bid.user.balance - self.winning_bid.amount)
 
       # Add to list of programs
-      self.winning_bid.auction.problem.update(user: self.winning_bid.user)
+      self.winning_bid.auction.problem.users << self.winning_bid.user
 
     end
   end

@@ -1,0 +1,45 @@
+<h1>Free Pool</h1>
+<hr>
+
+<% if params[:notice] != nil %>
+<div class="alert alert-info" role="alert"><%= params[:notice] %></div>
+<% end %>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th width="5%">#</th>
+      <th width="40%">Problem Name</th>
+      <th width="15%">Price</th>
+      <th width="15%">Reward</th>
+      <th colspan="2">Controls</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @free_pool_items.each do |free_pool_item| %>
+      <tr>
+        <td><%= free_pool_item.id %></td>
+        <td><%= free_pool_item.problem.name %></td>
+        <td><%= free_pool_item.problem.base_price %> coins</td>
+        <td><%= free_pool_item.problem.reward %> coins</td>
+        <td>
+          <%= link_to problem_preview_path(free_pool_item.problem) do %>
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Read Statement
+          <% end %>
+        </td>
+        <td>
+          <% if free_pool_item.problem.users.exists? current_user %>
+            <%= link_to '#' do %>
+              <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Bought
+            <% end %>
+          <% else %>
+            <%= link_to free_pool_item_buy_path(free_pool_item) do %>
+              <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Purchase
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

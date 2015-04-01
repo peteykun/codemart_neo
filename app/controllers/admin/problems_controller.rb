@@ -83,6 +83,6 @@ class Admin::ProblemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def problem_params
-      params.require(:problem).permit(:name, :difficulty, :statement, :sample_input, :sample_output, :test_case_inputs, :test_case_outputs)
+      params.require(:problem).permit(:name, :difficulty, :statement, :short_statement, :sample_input, :sample_output, :test_case_inputs, :test_case_outputs, :base_price, :reward)
     end
 end

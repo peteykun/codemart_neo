@@ -25,6 +25,27 @@
   <br>
 
   <div class="form-group">
+    <%= f.label :base_price %><br>
+    <p>The base price for bidding or the selling price for the free pool.</p>
+    <%= f.number_field :base_price, class: 'form-control' %>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= f.label :reward %><br>
+    <p>The coins awarded for a correct solution.</p>
+    <%= f.number_field :reward, class: 'form-control' %>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= f.label :short_statement %><br>
+    <p>Use HTML to format your short problem statement. You can preview what it looks like on the <%= link_to 'View Problem', [:admin, @problem] %> page.</p>
+    <%= f.text_area :short_statement, class: 'form-control', rows: 6 %>
+  </div>
+  <br>
+
+  <div class="form-group">
     <%= f.label :statement %><br>
     <p>Use HTML to format your problem statement. You can preview what it looks like on the <%= link_to 'View Problem', [:admin, @problem] %> page.</p>
     <%= f.text_area :statement, class: 'form-control', rows: 6 %>

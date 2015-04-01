@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :check_if_logged_in, only: [:index]
 
   def index
-    @users = User.all.order('score DESC')
+    @users = User.all.order('balance DESC')
   end
 
   # GET /users/new

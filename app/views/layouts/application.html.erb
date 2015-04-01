@@ -38,6 +38,9 @@
           <li<%= raw ' class="active"' if controller_name == "auctions" %>>
             <a href="<%= auctions_path %>">Auctions <span class="sr-only">(current)</span></a>
           </li>
+          <li<%= raw ' class="active"' if controller_name == "free_pool_items" %>>
+            <a href="<%= free_pool_items_path %>">Free Pool <span class="sr-only">(current)</span></a>
+          </li>
           <li<%= raw ' class="active"' if controller_name == "users" %>>
             <a href="<%= users_path %>">Leaderboard</a>
           </li>

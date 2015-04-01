@@ -2,16 +2,21 @@ class Problem < ActiveRecord::Base
   validates_presence_of :name, :statement, :sample_input, :sample_output, :difficulty
   validate              :input_strings_must_exist_before_output, :input_and_output_sizes_must_not_differ
   
-	has_many	            :runs
-	has_many	            :test_cases
-  has_many              :solutions
-  has_many              :auctions
-  belongs_to            :user
+	has_many	              :runs
+	has_many	              :test_cases
+  has_many                :solutions
+  has_many                :auctions
+  has_many                :free_pool_items
+  has_and_belongs_to_many :users
 
   attr_accessor :test_case_inputs, :test_case_outputs
 
-  def solved?
-    return self.runs.where(success: true).size > 0
+  def solved?(user)
+    return self.runs.where(success: true, user: user).size > 0
+  end
+
+  def sell_price
+    return (self.base_price * 0.40).round
   end
 
   def generate_new_run(user, number_of_test_cases)
