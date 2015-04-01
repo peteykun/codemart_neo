@@ -51,10 +51,12 @@ class Run < ActiveRecord::Base
 
       for i in 0...n do
         begin
-          expected_number = Float(expected_words[i])
-          run_number = Float(run_words[i])
+          unless expected_words[i] == run_words[i]
+            expected_number = Float(expected_words[i])
+            run_number = Float(run_words[i])
 
-          return false unless (expected_number - run_number).abs <= 0.001
+            return false unless (expected_number - run_number).abs <= 0.001
+          end
         rescue ArgumentError => e
           return false unless run_words[i] == expected_words[i]
         end
