@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @user.is_admin = false
-    @user.score = 0
 
     if params[:name] != nil
       @user.username = params[:name]
@@ -26,7 +25,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.is_admin = false
-    @user.score = 0
     @user.username.downcase!
     @user.email.downcase!
 
