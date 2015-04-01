@@ -17,8 +17,8 @@ end
 
 group :production do
   # Use postgres as the database for Active Record
-  gem 'pg'
-  gem 'rails_12factor'
+  gem 'mysql2'
+  gem 'passenger'
 end
 
 gem 'passenger'

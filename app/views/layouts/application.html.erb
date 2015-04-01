@@ -23,9 +23,11 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <% if current_user != nil %>
         <p class="navbar-text">
           <i class="glyphicon glyphicon-usd"></i> Balance: <span id="balance"><%= current_user.balance %></span> coins
         </p>
+        <% end %>
 
         <ul class="nav navbar-nav navbar-right">
           <% if current_user != nil %>

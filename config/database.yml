@@ -5,14 +5,14 @@
 #   gem 'sqlite3'
 #
 default: &default
-  pool: 5
-
-development:
-  <<: *default
   adapter: mysql2
   encoding: utf8
   username: codemart
   password: Bdqct8P2aE6JaKRD
+  pool: 5
+
+development:
+  <<: *default
   socket: /run/mysqld/mysqld.sock
   database: codemart_development
 
@@ -21,15 +21,11 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  adapter: mysql2
-  encoding: utf8
-  username: codemart
-  password: Bdqct8P2aE6JaKRD
   socket: /run/mysqld/mysqld.sock
   database: codemart_test
 
 production:
   <<: *default
-  adapter: postgresql
-  encoding: unicode
+  socket: /var/run/mysqld/mysqld.sock
+  database: codemart_production
 
