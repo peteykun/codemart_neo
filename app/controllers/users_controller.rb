@@ -29,10 +29,6 @@ class UsersController < ApplicationController
     @user.email.downcase!
 
     if @user.save
-      Region.all.each do |r|
-        Manifest.create(region: r, user: @user, level: 0)
-      end
-
       redirect_to login_path, notice: 'Successfully registered. You can log in now.'
     else
       render :new

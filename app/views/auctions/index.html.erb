@@ -42,7 +42,7 @@
 
       <b>Make a Bid:</b><br><br>
 
-      <input type="number" name="amount" class="form-control" value="<%= auction.current_price + 10 %>" data-min="<%= auction.current_price + 10 %>" data-max="<%= auction.buy_it_now_price - 10 %>" readonly><br>
+      <input type="number" name="amount" class="form-control" value="<%= [auction.current_price + 10, auction.buy_it_now_price - 10].min %>" data-min="<%= [auction.current_price + 10, auction.buy_it_now_price - 10].min %>" data-max="<%= auction.buy_it_now_price - 10 %>" readonly><br>
 
       <div class="btn-group" role="group" aria-label="add-value">
         <button type="button" class="btn btn-primary add" data-value="10">+10</button>

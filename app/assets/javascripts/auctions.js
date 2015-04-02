@@ -42,10 +42,10 @@ function reloadContents() {
             the_panel.find('.reward').html(auction.problem.reward);
             the_panel.find('.bid-button').data('allowed', auction.bidding_allowed);
             the_panel.find('.buy-button').data('allowed', auction.buying_allowed);
-            the_panel.find('input[type=number]').data('min', auction.current_price + 10);
+            the_panel.find('input[type=number]').data('min', Math.min(auction.current_price + 10, auction.buy_it_now_price - 10));
 
-            if(auction.current_price + 10 > parseInt(the_panel.find('input[type=number]').val()))
-              the_panel.find('input[type=number]').val(auction.current_price + 10);
+            if(Math.min(auction.current_price + 10, auction.buy_it_now_price - 10) > parseInt(the_panel.find('input[type=number]').val()))
+              the_panel.find('input[type=number]').val(Math.min(auction.current_price + 10, auction.buy_it_now_price - 10));
 
             if(auction.timer_running) {
               the_panel.find('.time_left_wrapper').show();
