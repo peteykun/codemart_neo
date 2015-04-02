@@ -19,10 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 3.hours do
-  rake "timed_events:next_zone"
-end
-
-every :minute do
-  rake "timed_events:update_scores"
+every 1.minutes do
+  rake "auctions:check_expiry"
 end

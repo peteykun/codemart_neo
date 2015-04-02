@@ -122,6 +122,8 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    redis (3.2.1)
+    remote_lock (1.1.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     sass (3.2.19)
@@ -179,6 +181,8 @@ DEPENDENCIES
   oj_mimic_json
   passenger
   rails (~> 4.2.1)
+  redis
+  remote_lock
   responders (~> 2.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

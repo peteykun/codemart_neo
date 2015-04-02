@@ -21,6 +21,10 @@ group :production do
   gem 'passenger'
 end
 
+# For cross-process synchronization
+gem 'redis'
+gem 'remote_lock'
+
 gem 'passenger'
 gem 'responders', '~> 2.0'
 gem 'json_builder'

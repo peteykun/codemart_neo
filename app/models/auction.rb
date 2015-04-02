@@ -3,7 +3,7 @@ class Auction < ActiveRecord::Base
   belongs_to :winning_bid, class_name: 'Bid', foreign_key: 'winning_bid'
   has_many   :bids
 
-  after_find :check_if_won
+  #after_find :check_if_won
 
   def current_price
     if winning_bid.nil?
@@ -48,6 +48,7 @@ class Auction < ActiveRecord::Base
     return true
   end
 
+  """
   def check_if_won
     if active == true and time_left != nil and time_left <= 0
       self.update(active: false)
@@ -60,6 +61,7 @@ class Auction < ActiveRecord::Base
 
     end
   end
+  """
 
   def time_left
     if end_time == nil
